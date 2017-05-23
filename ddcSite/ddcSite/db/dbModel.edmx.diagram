@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d07642560e1d4de6b2933b6c0eaf4223" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="ddcModel.AspNetRole" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ddcModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="12.5" />
+        <EntityTypeShape EntityType="ddcModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="ddcModel.AspNetUserRole" Width="1.5" PointX="5.25" PointY="10.25" />
+        <EntityTypeShape EntityType="ddcModel.AspNetUser" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="ddcModel.Attachment" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ddcModel.Client" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="ddcModel.Configuration" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ddcModel.DetailOrder" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="ddcModel.Order" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="ddcModel.Product" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ddcModel.Service" Width="1.5" PointX="5.25" PointY="15.875" />
+        <EntityTypeShape EntityType="ddcModel.ServiceXDetailsOrder" Width="1.5" PointX="7.5" PointY="3.25" />
+        <AssociationConnector Association="ddcModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ddcModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ddcModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ddcModel.FK_AspNetUsers_Client" />
+        <AssociationConnector Association="ddcModel.FK_Orders_Clients" />
+        <AssociationConnector Association="ddcModel.FK_DetailOrder_Order" />
+        <AssociationConnector Association="ddcModel.FK_ServiceXDetailsOrder_DetailOrder" />
+        <AssociationConnector Association="ddcModel.FK_ServiceXDetailsOrder_Service" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,160 @@
+﻿@model ddcSite.db.DetailOrder
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DetailOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Teeth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teeth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuccalMargin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuccalMargin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LingualMargin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LingualMargin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuccalTissue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuccalTissue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Compression)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Compression)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbutmentsParallel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AbutmentsParallel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Oclussion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oclussion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Material)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Material)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DesignRequirements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DesignRequirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelServices)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelServices)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticulatorType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticulatorType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelImplantConnection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelImplantConnection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

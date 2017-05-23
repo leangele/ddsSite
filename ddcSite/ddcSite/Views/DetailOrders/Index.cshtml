@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ddcSite.db.DetailOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Teeth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuccalMargin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LingualMargin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuccalTissue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Compression)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbutmentsParallel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Oclussion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DesignRequirements)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelServices)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticulatorType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelImplantConnection)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teeth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuccalMargin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LingualMargin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuccalTissue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Compression)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbutmentsParallel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Oclussion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DesignRequirements)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelServices)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArticulatorType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelImplantConnection)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

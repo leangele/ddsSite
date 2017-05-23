@@ -1,0 +1,1182 @@
+﻿@{
+    ViewBag.Title = "CreateCase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form id="commintForm" method="get" action="">
+
+    <h2>Prescription</h2>
+    <div class="form-horizontal">
+        <h4>Case: <label class="control-label-static" id="caseName"></label></h4>
+        <hr />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Full patient name</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input class="form-control txt" id="txtPatientName" type="text" min="5" name="Fullpatientname" minle required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="control-label-static col-md-6">Patient last name</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input class="form-control txt" id="txtPatientLastName" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="col-sm-4">
+
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Age</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input class="form-control" type="number" id="Age" name="Age" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Due date</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class='input-group date'>
+                                <input type='text' class="form-control fecha" id="DateDelivery"  />
+                                @*<span class="input-group-addon"  style="height: 35px">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>*@
+                                @*<input class="form-control " id="DateDelivery" tooltip="aleast 1 day after apointment" required name="DateDelivery" />*@
+                                <br />
+                                <span style="color: red" class="control-label-static">Please 1 day before appointment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Creation Case</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input class="form-control" id="DateCreation" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Gender</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <select id="Gender" class="form-control">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4" style="display: none">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Location</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input class="form-control" id="Location" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" style="display: none">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">Score</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input class="form-control" id="score" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" style="display: none">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label-static col-md-6">IdClient</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input class="form-control" id="IdClient" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*panel products added, Table*@
+
+        <hr title="products" />
+        <h4>Restauration Types</h4>
+        <div class="row">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" id="btnAddItem">
+                Add
+            </button>
+            <button type="button" class="btn btn-primary btn-sm " id="btnRemove">
+                Remove
+                @*<span class="glyphicon glyphicon-minus"></span>*@
+            </button>
+            <table class="table table-striped table-bordered" id="table_id">
+                <thead>
+                    <tr>
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            items
+                        </th>
+                        <th>
+                            Teeth
+                        </th>
+                        <th>
+                            Product
+                        </th>
+
+                        <th>
+                            Note
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="row" style="display: none">
+            <div class="form-group">
+                <div class="row">
+                    <label class="control-label-static col-md-6">Coupon</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <input class="form-control" id="Coupon" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div id="partialView" class="col-md-6"></div>
+            <div class="col-md-3"></div>
+        </div>
+
+        @*@Html.RenderPartial("Drag_drop_File")*@
+
+        @*<hr />*@
+
+        <div class="form-group">
+            <div class="row">
+                <p id="validation"></p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="btnCreateOrder" type="button" class="btn btn-primary btn-sm">Create Case</button>
+                </div>
+            </div>
+        </div>
+        @*panel shoping cart*@
+
+
+    </div>
+
+</form>
+<div id="divFixed" style="display: none;position: fixed; background: white; right: 50px; top: 150px; width: 350px" class="opaco">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Detail order</h4>
+        </div>
+        <div class="row">
+            <div id="orderItems"></div>
+        </div>
+        <div class="row" style="display: none">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-1">
+                    <label class="control-label-static col-md-6">Name</label>
+                </div>
+                <div class="col-sm-4" style="display: block">
+                    <input class="form-control" id="Name" readonly />
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display: block">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-1">
+                    <label class="control-label-static col-md-6">Price</label>
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" id="Price" readonly />
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display: block">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-1">
+                    <label class="control-label-static col-md-10">Tax</label>
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" id="PriceTax" readonly />
+                </div>
+
+            </div>
+        </div>
+        <div class="row" style="display: block">
+            <div class="form-group">
+                <div class="col-sm-6 col-sm-offset-1">
+                    <label class="control-label-static col-md-10">Total price</label>
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" id="PriceTotal" readonly />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="bntTransparency">Transparency</button>
+        </div>
+
+    </div>
+</div>
+@*panel modal show item to add to list*@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="glyphicon-refresh" id="btnClean">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><label id="Code"></label></h4>
+            </div>
+            <div class="modal-body">
+                <div class="divDetailItems">
+                    <div class="row" id="divProduct">
+                        <div class="col-sm-6">
+                            <label>Product</label>
+                            <div class="dropdown">
+                                <div id="btnListProducts" class="input-group" style="display: inline-flex; width: 100%">
+                                    <input class="form-control span1" id="product" placeholder="Choose an option" readonly>
+                                    <button id="btnProduct" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listProducts"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divTeeth">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <label>number of units</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Teeth</label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label>
+                                                    Splinted
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <input id="amount" readonly="" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" id="Teeth" readonly />
+                                            </div>
+                                            <div class="col-sm-3 checkbox">
+                                                <input type="checkbox" class="form-control" id="isBridge">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" id="show/hide" class="btn btn-primary btn-sm" data-target="#theetImage" data-toggle="collapse">show</button>
+                                </div>
+                                <div class="row collapse" style="border: 1px solid black" id="theetImage">
+                                    <div class="col-sm-12">
+                                        <img src="~/img/326px-Universal_Numbering_System.svg.png" usemap="#theetMap" class="map maphilight" id="teethImage" />
+                                        <map name="theetMap">
+                                            <area alt="1" class="tooth transparentColor" coords="37,210,40,207,49,207,63,209,70,213,76,218,76,225,74,232,71,236,66,240,59,240,53,240,47,239,42,237,40,232,37,225,35,222" id="tooth1" onclick="selectTeeth(1)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="2" class="tooth transparentColor" coords="42,196.00000127156576,48,204.00000127156576,57,206.00000127156576,68,208.00000127156576,75,205.00000127156576,80,197.00000127156576,80,186.00000127156576,75,180.00000127156576,67,174.00000127156576,59,170.00000127156576,52,169.00000127156576,46,171.00000127156576,42,178.00000127156576,40,184.00000127156576,43,190.00000127156576" id="tooth2" onclick="selectTeeth(2)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="3" class="tooth transparentColor" coords="57,167,68,174,74,172,78,168,87,157,88,152,79,141,73,135,69,134,63,132,56,135,52,138,49,143,47,152,51,161" id="tooth3" onclick="selectTeeth(3)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="4" class="tooth transparentColor" coords="70,133,78,135,86,133,91,130,92,123,90,118,84,114,78,111,71,111,66,112,61,116,61,124,65,130" id="tooth4" onclick="selectTeeth(4)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="5" class="tooth transparentColor" coords="79,110,88,109,97,109,101,107,103,102,104,97,101,93,98,90,92,87,87,85,85,84,82,85,75,88,72,92,71,97,72,103,76,108" id="tooth5" onclick="selectTeeth(5)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="6" class="tooth transparentColor" coords="84,78,89,85,96,88,103,89,108,87,110,84,110,77,109,71,107,67,103,61,99,61,92,61,89,62,85,69" id="tooth6" onclick="selectTeeth(6)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="7" class="tooth transparentColor" coords="104,61,108,68,116,71,124,71,130,67,131,59,130,54,127,49,125,47,118,48,112,51,106,55" id="tooth7" onclick="selectTeeth(7)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="8" class="tooth transparentColor" coords="130,41,130,47,133,55,137,63,144,64,149,63,153,60,157,53,160,49,162,43,162,41,157,37,148,36,139,37,135,38" id="tooth8" onclick="selectTeeth(8)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="9" class="tooth transparentColor" coords="162,42,168,36,178,36,190,39,196,45,193,54,190,59,187,63,182,65,175,62,167,52" id="tooth9" onclick="selectTeeth(9)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="10" class="tooth transparentColor" coords="194,53,194,63,201,71,208,71,214,70,217,69,221,62,221,60,220,56,212,51,207,47,200,46" id="tooth10" onclick="selectTeeth(10)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="11" class="tooth transparentColor" coords="223,61,234,61,240,70,241,79,237,84,233,86,226,90,221,89,217,86,215,77,216,69" id="tooth11" onclick="selectTeeth(11)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="12" class="tooth transparentColor" coords="239,85,247,86,254,91,254,99,253,105,250,108,244,110,234,110,226,108,222,101,223,94,226,90" id="tooth12" onclick="selectTeeth(12)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="13" class="tooth transparentColor" coords="263.99999847412107,117,263.99999847412107,124,261.99999847412107,128,258.99999847412107,132,254.9999984741211,134,250.9999984741211,134,247.9999984741211,136,241.9999984741211,135,235.9999984741211,132,233.9999984741211,128,233.9999984741211,123,234.9999984741211,119,239.9999984741211,114,245.9999984741211,111,251.9999984741211,110,257.99999847412107,111" id="tooth13" onclick="selectTeeth(13)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="14" class="tooth transparentColor" coords="276,141.0000030517578,277,151.0000030517578,276,158.0000030517578,272,164.0000030517578,258,173.0000030517578,252,172.0000030517578,248,168.0000030517578,245,166.0000030517578,241,161.0000030517578,239,157.0000030517578,238,151.0000030517578,250,138.0000030517578,256,134.0000030517578,263,132.0000030517578,272,136.0000030517578" id="tooth14" onclick="selectTeeth(14)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="15" class="tooth transparentColor" coords="257,174.0000015258789,266,169.0000015258789,276,169.0000015258789,284,178.0000015258789,285,185.0000015258789,283,189.0000015258789,283,197.0000015258789,276,205.0000015258789,271,207.0000015258789,263,208.0000015258789,254,207.0000015258789,249,203.0000015258789,246,195.0000015258789,245,188.0000015258789,246,186.0000015258789,250,179.0000015258789" id="tooth15" onclick="selectTeeth(15)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="16" class="tooth transparentColor" coords="263,207.00000915527343,277,205.00000915527343,285,207.00000915527343,289,215.00000915527343,289,224.00000915527343,287,229.00000915527343,286,234.00000915527343,279,239.00000915527343,272,241.00000915527343,261,240.00000915527343,256,238.00000915527343,253,235.00000915527343,249,227.00000915527343,249,218.00000915527343,254,213.00000915527343" id="tooth16" onclick="selectTeeth(16)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="17" class="tooth transparentColor" coords="255,260.9999969482422,265,252.9999969482422,270,251.9999969482422,279,255.9999969482422,284,263.9999969482422,284,273.9999969482422,280,280.9999969482422,276,284.9999969482422,272,285.9999969482422,261,284.9999969482422,256,281.9999969482422,253,278.9999969482422,254,271.9999969482422,255,268.9999969482422" id="tooth17" onclick="selectTeeth(17)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="18" class="tooth transparentColor" coords="261,285.9999969482422,274,285.9999969482422,282,292.9999969482422,285,301.9999969482422,286,311.9999969482422,283,316.9999969482422,277,321.9999969482422,271,325.9999969482422,265,324.9999969482422,256,323.9999969482422,252,318.9999969482422,249,312.9999969482422,251,304.9999969482422,250,298.9999969482422,252,291.9999969482422" id="tooth18" onclick="selectTeeth(18)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="19" class="tooth transparentColor" coords="257,323.9999938964844,265,324.9999938964844,272,329.9999938964844,277,338.9999938964844,279,344.9999938964844,277,357.9999938964844,272,363.9999938964844,265,366.9999938964844,255,365.9999938964844,246,361.9999938964844,243,359.9999938964844,239,351.9999938964844,240,346.9999938964844,242,341.9999938964844,242,335.9999938964844,243,332.9999938964844,249,325.9999938964844" id="tooth19" onclick="selectTeeth(19)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="20" class="tooth transparentColor" coords="246,363.00001831054686,254,365.00001831054686,260,372.00001831054686,261,378.00001831054686,259,384.00001831054686,256,387.00001831054686,252,390.00001831054686,243,390.00001831054686,240,389.00001831054686,234,384.00001831054686,233,381.00001831054686,232,373.00001831054686,233,371.00001831054686,238,366.00001831054686" id="tooth20" onclick="selectTeeth(20)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="21" class="tooth transparentColor" coords="235,386,241,391,245,397,244,407,242,410,239,413,235,413,230,413,225,411,221,407,219,405,218,396,219,392,224,387" id="tooth21" onclick="selectTeeth(21)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="22" class="tooth transparentColor" coords="220,407,225,413,225,426,223,429,220,431,214,432,211,432,207,429,204,425,202,422,203,417,205,413,206,409,207,408,212,406" id="tooth22" onclick="selectTeeth(22)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="23" class="tooth transparentColor" coords="195,416,202,424,205,430,204,435,201,439,196,440,191,440,188,438,185,435,184,434,188,422,189,419,191,416,192,415" id="tooth23" onclick="selectTeeth(23)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="24" class="tooth transparentColor" coords="184,433,184,439,182,443,179,444,175,443,172,442,167,443,166,441,163,439,163,436,165,432,167,430,169,426,172,424,175,422,180,427" id="tooth24" onclick="selectTeeth(24)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="25" class="tooth transparentColor" coords="162,435.0000061035156,157,427.0000061035156,154,423.0000061035156,150,422.0000061035156,148,422.0000061035156,147,424.0000061035156,145,428.0000061035156,143,431.0000061035156,142,433.0000061035156,141,437.0000061035156,143,442.0000061035156,150,443.0000061035156,156,442.0000061035156,160,441.0000061035156,161,439.0000061035156" id="tooth25" onclick="selectTeeth(25)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="26" class="tooth transparentColor" coords="142,434.0000061035156,141,430.0000061035156,139,425.0000061035156,138,420.0000061035156,135,417.0000061035156,132,415.0000061035156,129,418.0000061035156,126,422.0000061035156,123,424.0000061035156,121,426.0000061035156,121,431.0000061035156,125,439.0000061035156,133,440.0000061035156,138,438.0000061035156" id="tooth26" onclick="selectTeeth(26)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="27" class="tooth transparentColor" coords="121,426.0000061035156,123,423.0000061035156,123,417.0000061035156,120,410.0000061035156,119,407.0000061035156,113,407.0000061035156,108,407.0000061035156,104,408.0000061035156,101,411.0000061035156,100,415.0000061035156,100,424.0000061035156,103,430.0000061035156,110,431.0000061035156,117,430.0000061035156" id="tooth27" onclick="selectTeeth(27)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="28" class="tooth transparentColor" coords="85,391.00001831054686,91,386.00001831054686,99,387.00001831054686,107,391.00001831054686,107,397.00001831054686,107,404.00001831054686,104,407.00001831054686,100,411.00001831054686,94,414.00001831054686,88,412.00001831054686,84,411.00001831054686,81,404.00001831054686,81,398.00001831054686" id="tooth28" onclick="selectTeeth(28)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="29" class="tooth transparentColor" coords="71,366.00001831054686,78,363.00001831054686,85,366.00001831054686,93,370.00001831054686,93,379.00001831054686,90,386.00001831054686,86,390.00001831054686,81,391.00001831054686,74,390.00001831054686,70,388.00001831054686,66,383.00001831054686,65,374.00001831054686,68,369.00001831054686" id="tooth29" onclick="selectTeeth(29)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="30" class="tooth transparentColor" coords="47,344.00001831054686,52,332.00001831054686,56,327.00001831054686,63,325.00001831054686,68,325.00001831054686,75,326.00001831054686,82,332.00001831054686,84,338.00001831054686,83,340.00001831054686,85,345.00001831054686,87,351.00001831054686,86,356.00001831054686,83,359.00001831054686,80,362.00001831054686,75,364.00001831054686,69,366.00001831054686,65,368.00001831054686,58,366.00001831054686,50,361.00001831054686,47,353.00001831054686" id="tooth30" onclick="selectTeeth(30)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="31" class="tooth transparentColor" coords="52,287.0000030517578,64,285.0000030517578,73,291.0000030517578,75,299.0000030517578,74,304.0000030517578,76,312.0000030517578,74,319.0000030517578,71,323.0000030517578,65,325.0000030517578,57,327.0000030517578,49,323.0000030517578,46,321.0000030517578,42,316.0000030517578,41,314.0000030517578,40,306.0000030517578,41,299.0000030517578,42,295.0000030517578,46,291.0000030517578" id="tooth31" onclick="selectTeeth(31)" shape="poly" style="outline: none;" target="_blank" title="">
+                                            <area alt="32" class="tooth transparentColor" coords="52,287.0000030517578,63,286.0000030517578,68,284.0000030517578,72,279.0000030517578,73,275.0000030517578,71,272.0000030517578,71,264.0000030517578,70,261.0000030517578,65,256.0000030517578,60,253.0000030517578,55,252.0000030517578,50,253.0000030517578,46,257.0000030517578,42,262.0000030517578,41,271.0000030517578,44,280.0000030517578" id="tooth32" onclick="selectTeeth(3a2)" shape="poly" style="outline: none;" target="_blank" title="">
+                                        </map>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divVar">
+                        <div class="row" id="divBuccalMargin">
+                            <div class="col-sm-6">
+                                <label>Buccal margin</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="BuccalMargin" placeholder="Choose an option" readonly>
+                                        <button id="btnBuccalMargin" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listBuccalMargin"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherBuccalMargin" placeholder="write other option">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divLingualMargin">
+                            <div class="col-sm-6">
+                                <label>Lingual margin</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="LingualMargin" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnLingualMargin" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listLingualMargin"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherLingualMargin" placeholder="write other option">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divBuccalTissueCompression">
+                            <div class="col-sm-6">
+                                <label>Buccal Tissue Compression</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="BuccalTissueCompression" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnBuccalTissueCompression" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listBuccalTissueCompression"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherBuccalTissueCompression" placeholder="write other option" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divLingualTissueCompression">
+                            <div class="col-sm-6">
+                                <label>Lingual Tissue Compression</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="LingualTissueCompression" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnLingualTissueCompression" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listLingualTissueCompression"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherLingualTissueCompression" placeholder="write other option" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divAbutmentsParallel">
+                            <div class="col-sm-6">
+                                <label>Abutments parallel</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="AbutmentsParallel" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnAbutmentsParallel" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listAbutmentsParallel"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherAbutmentsParallel" placeholder="write other option" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divDesignStyle">
+                            <div class="col-sm-6">
+                                <label>Design Style</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="DesignStyle" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnDesignStyle" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listDesignStyle"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherDesignStyle" placeholder="write other option" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divMaterial">
+                            <div class="col-sm-6">
+                                <label>Material</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="Material" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnMaterial" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listMaterial"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row" id="divShade">
+                            <div class="col-sm-6">
+                                <label>Shade</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="Shade" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnShade" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listShade"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divArticulatorType">
+                            <div class="col-sm-6">
+                                listAtaAttachments
+                                <label>Articulator type</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="ArticulatorType" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnArticulatorType" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listArticulatorType"></ul>
+                                    </div>
+                                    <input class="form-control" id="otherArticulatorType" placeholder="write other option" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="divModelImplantConnection">
+                            <div class="col-sm-6">
+                                <label>Model implant Connection</label>
+                                <div class="dropdown">
+                                    <div class="input-group" style="display: inline-flex; width: 100%">
+                                        <input class="form-control span1" id="ModelImplantConnection" placeholder="Choose an option" value="" readonly>
+                                        <button id="btnModelImplantConnection" role="button" class="btn btn-success dropdown-toggle input-group-addon" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu scrollable-menu" role="menu" aria-labelledby="dropdownMenu" id="listModelImplantConnection"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divDesignRequirements">
+                            <div class="col-sm-6">
+                                <label>Design requirements</label>
+                                <input class="form-control" id="DesignRequirements" value="" />
+                            </div>
+                        </div>
+                        <div class="row" id="divModelServices">
+                            <div class="col-sm-6">
+                                <label>Model services</label>
+                                <input class="form-control" id="ModelServices" value="" />
+                            </div>
+                        </div>
+                        <div class="row" id="divContact">
+                            <div class="col-sm-6">
+                                <label>Contact</label>
+                                <input class="form-control" id="Contact" value="" />
+                            </div>
+                        </div>
+                        <div class="row" id="divOclussion">
+                            <div class="col-sm-6">
+                                <label>Oclussion</label>
+                                <input class="form-control" id="Oclussion" value="" />
+                            </div>
+                        </div>
+                        <div class="row" id="divNote">
+                            <div class="col-sm-12">
+                                <label>Notes</label>
+                                <textarea class="form-control" id="Note" cols="400" rows="5" style="resize: none;" data-role="none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="addRow">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    $(document).ready(function() {
+
+        var ldetails = [];
+        var detail = {}
+        var flat = false;
+        var toDelete = "";
+        var orderMaster = {};
+        var listAtaAttachments = [];
+
+        $("#txtPatientName").focusout(function() {
+            $("#caseName").text($("#txtPatientName").val().toUpperCase().split(" ").join("-"));
+        });
+
+        $('.maphilight').maphilight({ stroke: false, fillColor: '009DDF', fillOpacity: 0.5 });
+
+        $("#DateCreation").val(strDateTime);
+        $("#scoreInput").val("0");
+        $("#bntTransparency").click(function() {
+            var opacity = $("#divFixed").attr('class');
+            if (opacity == "opaco") {
+                $("#divFixed").attr("class", "solido");
+            } else {
+                $("#divFixed").attr("class", "opaco");
+            }
+        });
+
+        $('#Gender').append($('<option></option>').val("F").html("Female")).append($('<option></option>').val("M").html("Male"));
+
+        $('#table_id').DataTable({
+            "ordering": false,
+            "scrollX": false,
+            "columnDefs": [
+            {
+                "targets": [5],
+                "visible": false,
+                "searchable": false
+            },
+            {
+                "width": "20%",
+                "targets": 4,
+                "visible": true,
+                "searchable": false
+            }],
+            "order": [[ 5, 'asc' ]],
+            "autoWidth": false
+            //id
+            //Teeth
+            //Count
+            //Product
+            //Note
+            //
+        });
+
+
+        var t = $('#table_id').DataTable();
+
+        function getValueOther(control) {
+            var control1 = "#" + control;
+            var valControl = $(control1).val().toUpperCase();
+            if (valControl == "undefined") {
+                valControl = "";
+            }
+            if (valControl.includes("OTHER")) {
+                var control2 = "#other" + control;
+                return $(control2).val();
+            } else {
+                return valControl;
+            }
+        };
+
+        $('#addRow').on('click', function() {
+
+            var rpt=ValidateItemsVar();
+            if (rpt[0]) {
+                detail = {
+                    "IdName": randomString(10, '#A'),
+                    "Teeth": $("#Teeth").val(),
+                    "BuccalMargin": getValueOther("BuccalMargin"),
+                    "LingualMargin": getValueOther("LingualMargin"),
+                    "BuccalTissueCompression": getValueOther("BuccalTissueCompression"),
+                    "LingualTissueCompression": getValueOther("LingualTissueCompression"),
+                    "AbutmentsParallel": getValueOther("AbutmentsParallel"),
+                    "Note": $("#Note").val(),
+                    "Contact": $("#Contact").val(),
+                    "Oclussion": $("#Oclussion").val(),
+                    "Material": $("#Material").val(),
+                    "Shade": $("#Shade").val(),
+                    "DesignRequirements": getValueOther("DesignStyle"),
+                    "ModelServices": $("#ModelServices").val(),
+                    "ArticulatorType": $("#ArticulatorType").val(),
+                    "ModelImplantConnection": $("#ModelImplantConnection").val(),
+                    "Product": $("#product").val(),
+                    "Amount": $("#amount").val(),
+                    "Isbrigde": $("#isBridge").is(":checked"),
+                };
+                ldetails.push(detail);
+                flat = true;
+                clearFormElements("divDetailItems");
+                hideControls();
+                $('#myModal').modal('hide');
+            }else {
+                alertify.alert("Required fields",rpt[1] );
+                alertify.error(rpt[1].replace(/style='color: red'/gi,""),0 );
+            }
+
+        });
+        $('#myModal').on('hidden.bs.modal', function() {
+            hideControls();
+            clearFormElements("divDetailItems");
+            if (flat) {
+                t.row.add([
+                    detail.IdName,
+                    detail.Amount,
+                    detail.Teeth,
+                    detail.Product,
+                    detail.Note,
+                    detail.IdName
+                ]).draw(false);
+                detail = {};
+                flat = false;
+                showHideRemove();
+                //id
+                //Teeth
+                //Count
+                //Product
+                //Note
+                //
+            }
+            if ($("#spanErrorItems").is(":visible") == true) {
+                $("#spanErrorItems").remove();
+            }
+
+        });
+
+        $('#table_id tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                t.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+            console.log(t.row(this).data()[5]);
+            toDelete = t.row(this).data()[5];
+        } );
+
+        $('#btnRemove').click( function () {
+
+            alertify.confirm('Delete Item', 'Are you sure you want to delete this line?', function() {
+                var index = -1;
+                for (var i = 0; i < ldetails.length; i++) {
+                    index++;
+                    if (ldetails[i].id==toDelete) {
+                        break;
+                    }
+                }
+                if (index > -1) {
+                    ldetails.splice(index, 1);
+                }
+                showHideRemove();
+
+                t.row('.selected').remove().draw( false );
+                alertify.success('Item deleted!');
+            }
+                , function() {
+                    //dont like delete
+                }).setting('labels',{'ok':'Yes', 'cancel': 'No'});
+
+        } );
+
+        t.on( 'order.dt search.dt', function () {
+            t.column(5, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
+
+
+        function showHideControlsByProduct(product,value) {
+            hideControls();
+            switch (value) {
+                case "1":
+                    $("#divTeeth").show("fast");
+                    //$("#divteeth").show("fast");
+                    $("#divBuccalMargin").show("fast");
+                    $("#divLingualMargin").show("fast");
+                    $("#divBuccalTissueCompression").show("fast");
+
+                    break;
+                case "2":
+                case "3":
+                    $("#divTeeth").show("fast");
+                    $("#divBuccalTissueCompression").show("fast");
+                    $("#divLingualTissueCompression").show("fast");
+                    $("#divAbutmentsParallel").show("fast");
+                    $("#divDesignStyle").show("fast");
+                    $("#divMaterial").show("fast");
+                    $("#divShade").show("fast");
+                    break;
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                    $("#divBuccalMargin").show("fast");
+                    $("#divLingualMargin").show("fast");
+                    $("#divBuccalTissueCompression").show("fast");
+                    break;
+                case "9":
+                case "10":
+                case "11":
+                    $("#divBuccalTissueCompression").show("fast");
+                    $("#divLingualTissueCompression").show("fast");
+                    $("#divAbutmentsParallel").show("fast");
+                    $("#divDesignStyle").show("fast");
+                    $("#divMaterial").show("fast");
+                    $("#divShade").show("fast");
+                    break;
+                case "12":
+                case "13":
+                case "14":
+                case "15":
+                case "16":
+                    $("#divBuccalMargin").show("fast");
+                    $("#divLingualMargin").show("fast");
+                    $("#divBuccalTissueCompression").show("fast");
+                    break;
+                case "17":
+
+                    break;
+                case "18":
+                    $("#divBuccalTissueCompression").show("fast");
+                    $("#divLingualTissueCompression").show("fast");
+                    $("#divAbutmentsParallel").show("fast");
+                    $("#divDesignStyle").show("fast");
+                    $("#divMaterial").show("fast");
+                    $("#divShade").show("fast");
+                    break;
+                case "19":
+                case "20":
+                case "21":
+                case "22":
+                    $("#divBuccalTissueCompression").show("fast");
+                    $("#divLingualTissueCompression").show("fast");
+                    $("#divAbutmentsParallel").show("fast");
+                    $("#divDesignStyle").show("fast");
+                    $("#divMaterial").show("fast");
+                    $("#divShade").show("fast");
+                    break;
+                case "23":
+                case "24":
+                case "25":
+                    $("#divBuccalMargin").show("fast");
+                    $("#divLingualMargin").show("fast");
+                    $("#divBuccalTissueCompression").show("fast");
+                    break;
+                case "26":
+
+                    break;
+                case "27":
+
+                    break;
+                case "28":
+
+                    break;
+                case "29":
+
+                    break;
+                case "30":
+                    break;
+                case "31":
+
+                    break;
+                case "32":
+
+                    break;
+                case "33":
+
+                    break;
+                case "34":
+                    $("#divBuccalMargin").show("fast");
+                    $("#divLingualMargin").show("fast");
+                    $("#divBuccalTissueCompression").show("fast");
+                    break;
+                case "35":
+
+                    break;
+                default:
+                    hideControls();
+                    break;
+            }
+            //$("#divTeeth").show("fast");
+            //$("#divBuccalMargin").show("fast");
+            //$("#divLingualMargin").show("fast");
+            //$("#divBuccalTissueCompression").show("fast");
+            //$("#divLingualTissueCompression").show("fast");
+            //$("#divAbutmentsParallel").show("fast");
+            //$("#divDesignStyle").show("fast");
+            //$("#divMaterial").show("fast");
+            //$("#divShade").show("fast");
+            //$("#divArticulatorType").show("fast");
+            //$("#divModelImplantConnection").show("fast");
+            //$("#divDesignRequirements").show("fast");
+            //$("#divModelServices").show("fast");
+            //$("#divContact").show("fast");
+            //$("#divOclussion").show("fast");
+            $("#divNote").show("fast");
+        }
+
+        function ValidateItemsVar() {
+            var input = $( "input" );
+            var message="";
+            if ($("#divProduct").find( input ).val()=="") {
+                message+="<p style='color: red'>Product is Required!!!</p>";
+                return    [false,message];
+            }
+            if($("#divTeeth").is(":visible") == true){
+                if ($("#divTeeth").find( input ).val()=="") {
+                    message+="<p style='color: red'>Teeth Required!!!</p>";
+                }
+            }
+            if($("#divBuccalMargin").is(":visible") == true){
+                if ($("#divBuccalMargin").find( input ).val()=="") {
+                    message+="<p style='color: red'>Buccal Margin Required!!!</p>";
+                }
+            }
+            if($("#divLingualMargin").is(":visible") == true){
+                if ($("#divLingualMargin").find( input ).val()=="") {
+                    message+="<p style='color: red'>Lingual Margin Required!!!</p>";
+                }
+            }
+            if($("#divBuccalTissueCompression").is(":visible") == true){
+                if ($("#divBuccalTissueCompression").find( input ).val()=="") {
+                    message+="<p style='color: red'>Buccal tissue compression Required!!!</p>";
+                }
+            }
+            if($("#divLingualTissueCompression").is(":visible") == true){
+                if ($("#divLingualTissueCompression").find( input ).val()=="") {
+                    message+="<p style='color: red'>Lingual tissue compression Required!!!</p>";
+                }
+            }
+            if($("#divAbutmentsParallel").is(":visible") == true){
+                if ($("#divAbutmentsParallel").find( input ).val()=="") {
+                    message+="<p style='color: red'>Abutments parallel Required!!!</p>";
+                }
+            }
+            if($("#divDesignStyle").is(":visible") == true){
+                if ($("#divDesignStyle").find( input ).val()=="") {
+                    message+="<p style='color: red'>Design style Required!!!</p>";
+                }
+            }
+            if($("#divMaterial").is(":visible") == true){
+                if ($("#divMaterial").find( input ).val()=="") {
+                    message+="<p style='color: red'>Material Required!!!</p>";
+                }
+            }
+            if($("#divShade").is(":visible") == true){
+                if ($("#divShade").find( input ).val()=="") {
+                    message+="<p style='color: red'>Shade Required!!!</p>";
+                }
+            }
+            if($("#divArticulatorType").is(":visible") == true){
+                if ($("#divArticulatorType").find( input ).val()=="") {
+                    message+="<p style='color: red'>Articulator type Required!!!</p>";
+                }
+            }
+            if($("#divModelImplantConnection").is(":visible") == true){
+                if ($("#divModelImplantConnection").find( input ).val()=="") {
+                    message+="<p style='color: red'>Model implant connection Required!!!</p>";
+                }
+            }
+            if($("#divDesignRequirements").is(":visible") == true){
+                if ($("#divDesignRequirements").find( input ).val()=="") {
+                    message+="<p style='color: red'>Design requirements Required!!!</p>";
+                }
+            }
+            if($("#divModelServices").is(":visible") == true){
+                if ($("#divModelServices").find( input ).val()=="") {
+                    message+="<p style='color: red'>Model services Required!!!</p>";
+                }
+            }
+            if($("#divContact").is(":visible") == true){
+                if ($("#divContact").find( input ).val()=="") {
+                    message+="<p style='color: red'>Contact Required!!!</p>";
+                }
+            }
+            if($("#divOclussion").is(":visible") == true){
+                if ($("#divOclussion").find( input ).val()=="") {
+                    message+="<p style='color: red'>Oclussion Required!!!</p>";
+                }
+            }
+            if (message.length>0) {
+                return [false,message];
+            }
+            else {
+                return [true,message];
+            }
+        }
+        $(".dropdown-menu").on('click', 'ul li a', function() {
+            var valSelected = $(this).text().toUpperCase();
+            if (valSelected.includes("OTHER")) {
+                $(this).parents().eq(4).find("input").show("fast");
+            } else {
+                $(this).parents().eq(4).find("input").hide(1);
+                $(this).parents().eq(3).find("input").show(1);
+            }
+            $(this).parents().eq(3).find("input").attr("title", $(this).val());
+            $(this).parents().eq(3).find("input").val($(this).text());
+            var id = $(this).parents().eq(3).find("input").attr('id');
+            if (id.includes("product")) {
+                showHideControlsByProduct($("#"+id).text(),$("#"+id).attr("title"));
+                clearFormElements("divDetailItems");
+                $(this).parents().eq(3).find("input").attr("title", $(this).val());
+                $(this).parents().eq(3).find("input").val($(this).text());
+            }
+        });
+
+        $("#btnAttach").on("click", function() {
+            var data = new FormData();
+            var files = $("#attach").get(0).files;
+            var lFiles = [];
+            if (files.length > 0) {
+                // Add the uploaded image content to the form data collection
+                for (var i = 0; i < files.length; i++) {
+                    data.append("attach", lFiles);
+                }
+            }
+            alert(data);
+
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/api/UploadFiles/Upload",
+                contentType: false,
+                processData: false,
+                data: data
+                //success: SuccessCallback,
+                //error: FailureCallback
+            });
+
+            ajaxRequest.done(function (xhr, textStatus) {
+                alert(data);
+            });
+        });
+
+        function SuccessCallback(data) {
+            alert(data);
+        }
+
+        function FailureCallback(data) {
+            alert(data);
+        }
+        function insertAfter(referenceNode, newNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
+
+        var validateInformation = function() {
+            var form = document.getElementById("commintForm");
+            if ($(".ErrorRequired").is(":visible") == true) {
+                $(".ErrorRequired").remove();
+            }
+            var span;
+            var node;
+            if (ldetails.length==0) {
+                var btn=document.getElementById("btnAddItem");
+                span = document.createElement("span");
+                span.setAttribute( 'class', 'ErrorRequired' );
+                span.setAttribute( 'id', 'spanErrorItems' );
+                span.setAttribute( 'style', 'color:red' );
+                node = document.createTextNode("Required Items!!!!");
+                span.appendChild(node);
+                //var input = form.elements[i]
+                insertAfter(btn, span);
+                alertify.error("Required items",5 );
+            }
+            for(var i=0; i < form.elements.length; i++) {
+                var inputDate = form.elements[i].id;
+                if (inputDate=="DateDelivery") {
+                    var startDate = $('#DateCreation').val().replace('-','/');
+                    var endDate = $('#DateDelivery').val().replace('-','/');
+
+                    if(startDate > endDate){
+                        span = document.createElement("span");
+                        span.setAttribute( 'class', 'ErrorRequired' );
+                        span.setAttribute( 'style', 'color:red' );
+                        node = document.createTextNode("Date must be later!!!!");
+                        span.appendChild(node);
+                        input = form.elements[i];
+                        insertAfter(input, span);
+                    }
+                }
+                if(form.elements[i].value === "" && form.elements[i].hasAttribute('required')){
+                    span = document.createElement("span");
+                    span.setAttribute( 'class', 'ErrorRequired' );
+                    span.setAttribute( 'style', 'color:red' );
+                    node = document.createTextNode("Required Field!!!!");
+                    span.appendChild(node);
+                    input = form.elements[i];
+                    insertAfter(input, span);
+                }
+
+
+            }
+            if ($(".ErrorRequired").is(":visible") == true) {
+                alertify.error("Required fields",5 );
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
+
+        function SaveOrder() {
+            if (validateInformation()) {
+                orderMaster = {
+                    Name: "",
+                    Price: 0,
+                    DateDelivery: $("#DateDelivery").val(),
+                    Location: $("#Location").val(),
+                    Score: $("#Score").val(),
+                    DateCreation: $("#DateCreation").val(),
+                    IdClient: $("#idClientLog").val(),
+                    PatientName: $("#txtPatientName").val(),
+                    //PatientLastName: $("#PatientLastName").val(),
+                    Coupon: $("#Coupon").val(),
+                    Gender: $("#Gender").val(),
+                    Age: $("#Age").val(),
+                    PriceTax: $("#PriceTax").val(),
+                    PriceTotal: $("#PriceTotal").val()
+                };
+                var orderComplete = {
+                    OrderMaster: orderMaster,
+                    OrderDetail: ldetails,
+                    //ListAtaAttachments: listAtaAttachments
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Orders/CreateOrderComplete",
+                    processData: false,
+                    contentType: 'application/json',
+                    data:  JSON.stringify(orderComplete),
+                    success:function( data, textStatus, jQxhr ){
+                        //successufll saved.
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( errorThrown );
+                        //control error
+                    }
+                });
+            }
+        }
+
+        $("#btnCreateOrder").on("click", function() {
+            alertify.confirm('Create case', 'Are you sure you want to Create the case?', function() {
+                SaveOrder();
+            },
+            function() {
+                //dont like delete
+            }).setting('labels',{'ok':'Yes', 'cancel': 'No'});
+
+        });
+
+        function showHideRemove() {
+            if (ldetails.length == 0) {
+                $("#btnRemove").hide(10);
+                //$("div >#spanErrorItems").hide(10);
+            } else {
+                $("#btnRemove").show(10);
+            }
+        }
+
+        function hideControls() {
+            $("#divTeeth").hide("fast");
+            $("#otherBuccalMargin").hide("fast");
+            $("#otherAbutmentsParallel").hide("fast");
+            $("#otherLingualMargin").hide("fast");
+            $("#otherArticulatorType").hide("fast");
+            $("#otherMaterial").hide("fast");
+            $("#otherDesignStyle").hide("fast");
+            $("#otherBuccalTissueCompression").hide("fast");
+            $("#otherLingualTissueCompression").hide("fast");
+
+            $("#divBuccalMargin").hide("fast");
+            $("#divLingualMargin").hide("fast");
+            $("#divBuccalTissueCompression").hide("fast");
+            $("#divLingualTissueCompression").hide("fast");
+            $("#divAbutmentsParallel").hide("fast");
+            $("#divDesignStyle").hide("fast");
+            $("#divMaterial").hide("fast");
+            $("#divShade").hide("fast");
+            $("#divArticulatorType").hide("fast");
+            $("#divModelImplantConnection").hide("fast");
+            $("#divDesignRequirements").hide("fast");
+            $("#divModelServices").hide("fast");
+            $("#divContact").hide("fast");
+            $("#divOclussion").hide("fast");
+            $("#divNote").hide("fast");
+        }
+
+        showHideRemove();
+        hideControls();
+        //$('#partialView').load('/Upload/Drag_drop_file');
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        fillProducts();
+        fillBuccalAndLingualMargin();
+        fillBuccalAndLingualCompression();
+        fillAbutmentsParallel();
+        fillShades();
+        fillMaterials();
+        fillDesignStyle();
+        fillArticulatorType();
+        fillModelImplantConnection();
+    });
+</script>

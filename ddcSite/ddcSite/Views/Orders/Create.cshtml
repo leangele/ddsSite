@@ -1,0 +1,459 @@
+﻿@model ddcSite.Models.Order
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <h4>Case</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.Label("Patient name", htmlAttributes: new { @class = "control-label-static col-md-6", })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control txt", @id = "txtPatientName" } })
+                            @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.Label("Patient last name", htmlAttributes: new { @class = "control-label-static col-md-6" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PatientLastName, new { htmlAttributes = new { @class = "form-control txt", @id = "txtPatientLastName" } })
+                            @Html.ValidationMessageFor(model => model.PatientLastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control txt", @id = "Age" } })
+                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.Label("Due date", htmlAttributes: new { @class = "control-label-static col-md-6 " })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class='input-group'>
+                                @Html.EditorFor(model => model.DateDelivery, new { htmlAttributes = new { @class = "form-control fecha", @type = "date", @id = "DateDelivery", @tooltip = "aleast 1 day after apointment" } })
+                                <br />
+                                <span style="color: red" class="control-label-static">Please 1 day before appointment</span>
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DateDelivery, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.DateCreation, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DateCreation, new { htmlAttributes = new { @class = "form-control", id = "DateCreation", @readonly = "true" } })
+                            @Html.ValidationMessageFor(model => model.DateCreation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+
+
+                            <select id="ddlGender" class="form-control">
+                                <option></option>
+                            </select>
+
+                            @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", @Type = "hidden", @id = "txtGender" } })
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4" style="display: none">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" style="display: none">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.Score, htmlAttributes: new { @class = "control-label col-md-2", })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control", @id = "scoreInput", @readonly = "true" } })
+                            @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" style="display: none">
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(model => model.IdClient, "IdClient", htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.DropDownList("IdClient", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdClient, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(model => model.Coupon, htmlAttributes: new { @class = "control-label-static col-md-2" })
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Coupon, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Coupon, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="divFixed" style="position: fixed; background: white; right: 50px; top: 150px; border: black" class="opaco">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                    <h4 class="modal-title">Detail order</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row center">
+                        <div class="col-sm-offset-3"></div>
+                        <div class="col-sm-4" style="display: none">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "Name", @readonly = "true" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="display: block">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label-static col-md-2" })
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="display: block">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.Label("Tax", htmlAttributes: new { @class = "control-label-static col-md-2" })
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.PriceTax, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                        @Html.ValidationMessageFor(model => model.PriceTax, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="display: block">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.PriceTotal, htmlAttributes: new { @class = "control-label-static col-md-2" })
+
+                                    @Html.EditorFor(model => model.PriceTotal, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="orderItems"></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="bntTransparency">Transparency</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row"></div><div class="row"></div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<style>
+    .opaco {
+        opacity: 0.5;
+    }
+
+    .solido {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        var $Name = $("#Name");
+        $("#DateCreation").val(strDateTime);
+        $("#scoreInput").val("0");
+        var orderItem = [];
+
+
+        $("#bntTransparency").click(function () {
+
+            var opacity = $("#divFixed").attr('class');
+
+            if (opacity == "opaco") {
+                $("#divFixed").attr("class", "solido");
+            } else {
+                $("#divFixed").attr("class", "opaco");
+            }
+        });
+
+        //$("#txtPatientName").keyup(function () {
+        //    $Name.val($Name.val());
+        //});
+
+        //$('#txtPatientName').keypress(function () {
+        //    $('#idfield2').val($(this).val());
+        //});
+
+        $("#txtPatientName").focusout(function () {
+            $Name.val(this.value);
+
+            var client = $("#IdClient").val();
+            var clientLog = $("#idClientLog").val();
+            if (client != clientLog) {
+                $('#IdClient>option[value="' + clientLog + '"]').attr('selected', true);
+                $("#IdClient").attr("disabled", "disabled");
+            }
+        });
+
+        $("#txtPatientLastName").focusout(function () {
+            $Name.val($Name.val() + "-" + this.value + "-" + Date.now());
+        });
+
+
+
+
+        $('#ddlGender')
+            .append(
+                 $('<option></option>').val("F").html("Female"))
+            .append(
+                 $('<option></option>').val("M").html("Male"));
+
+        $("#ddlGender").change(function () {
+            $("#txtGender").val($('#ddlGender').val());
+        });
+
+        //add button click function
+        $("#btnAdd").click(function () {
+            //check validation of order item
+            var isValidItem = true;
+            if ($("#itemName").val().trim() == '') {
+                isValidItem = false;
+                $("#itemName").siblings("span.error").CSS("visibility", "visible");
+            } else {
+                $("#itemName").siblings("span.error").CSS("visibility", "hidden");
+            }
+
+            if (!($("#quantity").val().trim() != '' && !isNaN($("#quantity").val().trim()))) {
+                isValidItem = false;
+                $("#quantity").siblings("span.error").CSS("visibility", "visible");
+            } else {
+                $("#quantity").siblings("span.error").CSS("visibility", "hidden");
+            }
+
+            if (!($("#details").val().trim() != '' && !isNaN($("#details").val().trim()))) {
+                isValidItem = false;
+                $("#details").siblings("span.error").CSS("visibility", "visible");
+            } else {
+                $("#details").siblings("span.error").CSS("visibility", "hidden");
+            }
+
+            if (isValidItem) {
+                orderItems.push({
+                    ItenName: $("#itemName").val().trim(),
+                    Quantity: parseInt($("#quantity").val().trim()),
+                    Details: $("#details").val().trim()
+                });
+                $("#itemName").val("").focus();
+                $("#quantity").val("");
+                $("#details").val("");
+                generatedItemTable();
+            }
+        });
+        //save button click function
+        $("#submit").click(function () {
+            //validation order
+            var isAllValid = true;
+
+            if (orderItem.length == 0) {
+                $("#orderitems").html("<span style='color:red'> Please add order items</span>");
+                isAllValid = false;
+            }
+
+            if ($("#patientname").val().trim() == '') {
+                $("#patientname").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#patientname").siblings("span.error").CSS("visibility", "visible");
+            }
+
+            if ($("#Name").val().trim() == '') {
+                $("#Name").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#Name").siblings("span.error").CSS("visibility", "visible");
+            }
+
+            if ($("#PatientLastName").val().trim() == '') {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+            }
+
+            if ($("#DateDelivery").val().trim() == '') {
+                $("#DateDelivery").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#DateDelivery").siblings("span.error").CSS("visibility", "visible");
+            }
+
+            if ($("#Location").val().trim() == '') {
+                $("#Location").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#Location").siblings("span.error").CSS("visibility", "visible");
+            }
+
+
+
+
+
+
+
+            if ($("#PatientLastName").val().trim() == '') {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+            }
+            if ($("#PatientLastName").val().trim() == '') {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+            }
+            if ($("#PatientLastName").val().trim() == '') {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+            }
+            if ($("#PatientLastName").val().trim() == '') {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+                isAllValid = false;
+            } else {
+                $("#PatientLastName").siblings("span.error").CSS("visibility", "visible");
+            }
+            //save if valid
+        });
+        //function for show added items in table
+        function generatedItemTable() {
+            if (orderItem.length > 0) {
+                var $table = $("<table/>");
+                $table.append("<thead><tr><th>Item</th><th>Quantity</th><th>Details</th></tr></thead>");
+                var $tbody = $("<tbody>");
+                $.each(orderItems, function (i, val) {
+                    var $row = $("<tr/>");
+                    $row.append($("<td/>").html(val.ItemName));
+                    $row.append($("<td/>").html(val.Quantity));
+                    $row.append($("<td/>").html(val.Details));
+                    $tbody.append($row);
+                });
+                $table.append($tbody);
+                $("#orderItems").html($table);
+            }
+        }
+    });
+</script>
